@@ -34,7 +34,6 @@ def test_password_is_masked_while_typing(login_page):
 
 def test_logout_returns_to_login_and_closes_the_session(driver, base_url, inventory, login_page):
     inventory.logout()
-    login_page.wait_for_url_part("saucedemo.com")
-    assert login_page.is_shown()
+    login_page.wait_until_shown()
     driver.get(base_url + "/inventory.html")
     assert "when you are logged in" in login_page.error_text()

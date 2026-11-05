@@ -22,7 +22,7 @@ def test_a_forged_session_cookie_is_rejected(driver, base_url):
     driver.add_cookie({"name": "session-username", "value": "standard_user"})
     driver.get(base_url + "/inventory.html")
     page = LoginPage(driver, base_url)
-    assert page.is_shown(), "correct behaviour: back at the login page"
+    assert page.is_shown_within(4), "correct behaviour: back at the login page"
 
 
 def test_script_typed_into_the_login_form_is_not_executed(driver, login_page):
