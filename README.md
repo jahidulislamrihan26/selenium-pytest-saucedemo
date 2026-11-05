@@ -4,6 +4,8 @@
 
 A **Selenium 4** suite in **Python with pytest** for the public [SauceDemo](https://www.saucedemo.com) web shop, built with the **Page Object Model**. It tests the same site as the [Playwright](https://github.com/jahidulislamrihan26/playwright-ui-automation-pom) and [Cypress](https://github.com/jahidulislamrihan26/cypress-e2e-saucedemo) suites, so the three tools can be compared on one application.
 
+**Result in CI (headless Chrome): 29 tests, 28 pass and 1 expected failure** (the known login bypass), in about 40 seconds.
+
 ## What is covered
 | Area | Checks |
 |---|---|
