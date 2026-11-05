@@ -30,14 +30,14 @@ def test_name_sort_z_to_a(inventory):
 
 def test_adding_a_product_updates_the_cart_badge(inventory):
     inventory.add("sauce-labs-backpack")
-    assert inventory.badge_count() == 1
+    assert inventory.has_badge(1), f"badge shows {inventory.badge_count()}"
 
 
 def test_badge_counts_every_product_and_falls_on_remove(inventory):
     inventory.add("sauce-labs-backpack", "sauce-labs-bike-light", "sauce-labs-onesie")
-    assert inventory.badge_count() == 3
+    assert inventory.has_badge(3), f"badge shows {inventory.badge_count()}"
     inventory.remove("sauce-labs-bike-light")
-    assert inventory.badge_count() == 2
+    assert inventory.has_badge(2), f"badge shows {inventory.badge_count()}"
 
 
 def test_product_detail_page_opens(driver, inventory):

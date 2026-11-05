@@ -23,14 +23,14 @@ def checkout(driver, base_url, cart) -> CheckoutPage:
 
 
 def test_cart_shows_the_products_with_their_prices(cart):
-    assert cart.count() == 2
+    assert cart.has_count(2), f"cart shows {cart.count()} rows"
     assert "Sauce Labs Backpack" in cart.item_text()
     assert "$29.99" in cart.item_text()
 
 
 def test_removing_a_product_leaves_one(cart):
     cart.remove("sauce-labs-backpack")
-    assert cart.count() == 1
+    assert cart.has_count(1), f"cart shows {cart.count()} rows"
 
 
 def test_continue_shopping_returns_to_the_list(cart):
@@ -70,4 +70,4 @@ def test_cancel_goes_back_to_the_cart_with_the_products(driver, base_url, checko
     checkout.cancel()
     page = CartPage(driver, base_url)
     page.wait_until_loaded()
-    assert page.count() == 2
+    assert page.has_count(2), f"cart shows {page.count()} rows"

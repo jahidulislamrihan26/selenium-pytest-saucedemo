@@ -47,6 +47,9 @@ class InventoryPage(BasePage):
     def badge_count(self) -> int:
         return int(self.text_of(self.BADGE)) if self.is_present(self.BADGE) else 0
 
+    def has_badge(self, expected: int) -> bool:
+        return self.becomes(self.badge_count, expected)
+
     def open_cart(self) -> None:
         self.click(self.CART_LINK)
 

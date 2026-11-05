@@ -46,5 +46,15 @@ class BasePage:
     def is_present(self, locator) -> bool:
         return len(self.find_all(locator)) > 0
 
+    def becomes(self, read, expected) -> bool:
+        """Wait until read() equals expected, and report whether it did. Used for values that update a moment after a
+        click (cart badge, number of cart rows), so a test never reads them half-way through a page change."""
+        from selenium.common.exceptions import TimeoutException
+        try:
+            self.wait.until(lambda _d: read() == expected)
+            return True
+        except TimeoutException:
+            return False
+
     def wait_until_gone(self, locator) -> None:
         self.wait.until(lambda d: len(d.find_elements(*locator)) == 0)
