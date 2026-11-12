@@ -15,8 +15,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  docs:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: The traceability table is up to date
+        run: |
+          python tools/trace.py
+          git diff --exit-code docs/traceability.md
+
   selenium:
     runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox]
+    name: selenium (${{ matrix.browser }})
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -24,11 +41,13 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Selenium tests (Chrome, headless)
-        run: python -m pytest
+      - name: Selenium tests (${{ matrix.browser }}, headless, 4 in parallel)
+        env:
+          BROWSER: ${{ matrix.browser }}
+        run: python -m pytest -n 4 --html=reports/report-${{ matrix.browser }}.html --self-contained-html
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: selenium-report
+          name: selenium-report-${{ matrix.browser }}
           path: reports
           if-no-files-found: ignore

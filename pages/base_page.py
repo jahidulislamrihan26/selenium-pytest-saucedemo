@@ -56,5 +56,24 @@ class BasePage:
         except TimeoutException:
             return False
 
+    def appears(self, locator, seconds: float = 3) -> bool:
+        """True if the element becomes visible within a short, bounded wait. A check that something must NOT be shown has to give the
+        page time to draw it first, or it would pass on a page that has simply not been drawn yet."""
+        from selenium.common.exceptions import TimeoutException
+        try:
+            WebDriverWait(self.driver, seconds).until(EC.visibility_of_element_located(locator))
+            return True
+        except TimeoutException:
+            return False
+
+    def url_becomes(self, part: str, seconds: float = 3) -> bool:
+        """True if the address contains `part` within a short, bounded wait."""
+        from selenium.common.exceptions import TimeoutException
+        try:
+            WebDriverWait(self.driver, seconds).until(EC.url_contains(part))
+            return True
+        except TimeoutException:
+            return False
+
     def wait_until_gone(self, locator) -> None:
         self.wait.until(lambda d: len(d.find_elements(*locator)) == 0)
