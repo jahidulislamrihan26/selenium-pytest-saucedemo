@@ -1,12 +1,13 @@
 # Selenium + Python (pytest): SauceDemo
 
-[![CI](https://github.com/jahidulislamrihan26/selenium-pytest-saucedemo/actions/workflows/ci.yml/badge.svg)](https://github.com/jahidulislamrihan26/selenium-pytest-saucedemo/actions/workflows/ci.yml) Part of the [SQA portfolio](https://github.com/jahidulislamrihan26/sqa-portfolio).
+[![CI](https://github.com/jahidulislamrihan26/selenium-pytest-saucedemo/actions/workflows/ci.yml/badge.svg)](https://github.com/jahidulislamrihan26/selenium-pytest-saucedemo/actions/workflows/ci.yml) Part of the [SQA portfolio](https://github.com/jahidulislamrihan26/sqa-portfolio). [Live reports](https://jahidulislamrihan26.github.io/selenium-pytest-saucedemo/).
 
 A **Selenium 4** suite in **Python with pytest** for the public [SauceDemo](https://www.saucedemo.com) web shop, built with the **Page Object Model** and linked test by test to a manual test suite. It tests the same site as the [Playwright](https://github.com/jahidulislamrihan26/playwright-ui-automation-pom) and [Cypress](https://github.com/jahidulislamrihan26/cypress-e2e-saucedemo) projects, so the three tools can be compared on one application.
 
 ## Result in one look
 | | |
 |---|---|
+| Live reports | **[Chrome](https://jahidulislamrihan26.github.io/selenium-pytest-saucedemo/report/chrome.html)** and **[Firefox](https://jahidulislamrihan26.github.io/selenium-pytest-saucedemo/report/firefox.html)** (see also the [report index](https://jahidulislamrihan26.github.io/selenium-pytest-saucedemo/)) |
 | Tests | **104**, run on **Chrome and Firefox** in CI, 4 in parallel |
 | Chrome | 74 pass, 30 expected failures (known defects), 0 unexpected, 98 seconds |
 | Firefox | 64 pass, 30 expected failures, 0 unexpected, 10 skipped on purpose (screen-size emulation is Chrome-only), about 4 minutes |
